@@ -1,0 +1,9 @@
+{
+    "name": "anomaly/comments-module",
+    "type": "streams-addon",
+    "autoload": {
+        "psr-4": {
+            "Anomaly\\CommentsModule\\": "src/"
+        }
+    }
+}
