@@ -1,6 +1,7 @@
 <?php namespace Anomaly\CommentsModule\Comment\Command;
 
 use Anomaly\CommentsModule\Comment\Contract\CommentInterface;
+use Anomaly\UsersModule\User\Contract\UserInterface;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Bus\SelfHandling;
 
@@ -39,6 +40,10 @@ class SetUser implements SelfHandling
      */
     public function handle(Guard $auth)
     {
-        $this->entry->setAttribute('user', $auth->user());
+        /* @var UserInterface $user */
+        if ($user = $auth->user()) {
+            $this->entry->setAttribute('user', $user);
+            $this->entry->setAttribute('email', $user->getEmail());
+        }
     }
 }

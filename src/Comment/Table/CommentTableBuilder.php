@@ -2,6 +2,14 @@
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
+/**
+ * Class CommentTableBuilder
+ *
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @package       Anomaly\CommentsModule\Comment\Table
+ */
 class CommentTableBuilder extends TableBuilder
 {
 
@@ -17,14 +25,27 @@ class CommentTableBuilder extends TableBuilder
      *
      * @var array|string
      */
-    protected $filters = [];
+    protected $filters = [
+        'search' => [
+            'fields' => [
+                'body',
+                'name',
+                'email',
+                'ip_address',
+            ]
+        ]
+    ];
 
     /**
      * The table columns.
      *
      * @var array|string
      */
-    protected $columns = [];
+    protected $columns = [
+        'entry.label',
+        'email',
+        'entry.body|str_limit(50)',
+    ];
 
     /**
      * The table buttons.
