@@ -2,6 +2,7 @@
 
 use Anomaly\Streams\Platform\Model\EloquentModel;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
+use Illuminate\Contracts\Auth\Guard;
 
 /**
  * Class CommentFormBuilder
@@ -22,21 +23,6 @@ class CommentFormBuilder extends FormBuilder
     protected $subject = null;
 
     /**
-     * Fields to skip.
-     *
-     * @var array|string
-     */
-    protected $skips = [
-        'approved',
-        'ip_address',
-        'email',
-        'parent',
-        'subject',
-        'name',
-        'user',
-    ];
-
-    /**
      * The form actions.
      *
      * @var array|string
@@ -44,6 +30,44 @@ class CommentFormBuilder extends FormBuilder
     protected $actions = [
         'submit',
     ];
+
+    /**
+     * Fired when ready to build.
+     *
+     * @param Guard $auth
+     */
+    public function onReady(Guard $auth)
+    {
+        $this->setSkips(
+            [
+                'approved',
+                'ip_address',
+                'parent',
+                'subject',
+                'user',
+            ]
+        );
+
+        if ($auth->check()) {
+            $this
+                ->skipField('email')
+                ->skipField('name');
+        }
+
+        if ($auth->guest()) {
+            $this->setFields(
+                [
+                    'name' => [
+                        'required' => true,
+                    ],
+                    'email' => [
+                        'required' => true,
+                    ],
+                    '*',
+                ]
+            );
+        }
+    }
 
     /**
      * Fired just before saving.

@@ -15,9 +15,20 @@ use Anomaly\Streams\Platform\Support\Presenter;
 class CommentCriteria extends EntryCriteria
 {
 
+    /**
+     * Return only approved comments.
+     *
+     * @return $this
+     */
+    public function approved()
+    {
+        $this->query->where('approved', true);
+
+        return $this;
+    }
 
     /**
-     * Set the subject restriction.
+     * Return comments by subject.
      *
      * @param $entry
      * @return $this
