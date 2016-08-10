@@ -70,7 +70,11 @@ class CommentTableBuilder extends TableBuilder
      *
      * @var array
      */
-    protected $options = [];
+    protected $options = [
+        'order_by' => [
+            'id' => 'DESC',
+        ]
+    ];
 
     /**
      * The table assets.
