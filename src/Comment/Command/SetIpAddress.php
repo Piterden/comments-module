@@ -39,6 +39,6 @@ class SetIpAddress implements SelfHandling
      */
     public function handle(Request $request)
     {
-        $this->entry->setAttribute('ip_address', $request->ip());
+        $this->entry->setAttribute('ip_address', $request->getClientIp());
     }
 }
