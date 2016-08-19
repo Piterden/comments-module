@@ -20,6 +20,7 @@ class AnomalyModuleCommentsCreateCommentsFields extends Migration
     protected $fields = [
         'body'       => 'anomaly.field_type.textarea',
         'approved'   => 'anomaly.field_type.boolean',
+        'flagged'    => 'anomaly.field_type.boolean',
         'user'       => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
