@@ -23,6 +23,29 @@ class CommentFormBuilder extends FormBuilder
     protected $subject = null;
 
     /**
+     * The subject ID.
+     *
+     * @var null|int
+     */
+    protected $subjectId = null;
+
+    /**
+     * The subject type.
+     *
+     * @var null|string
+     */
+    protected $subjectType = null;
+
+    /**
+     * The skipped fields.
+     *
+     * @var array
+     */
+    protected $skips = [
+        'approved',
+    ];
+
+    /**
      * The form actions.
      *
      * @var array|string
@@ -57,7 +80,7 @@ class CommentFormBuilder extends FormBuilder
         if ($auth->guest()) {
             $this->setFields(
                 [
-                    'name' => [
+                    'name'  => [
                         'required' => true,
                     ],
                     'email' => [
@@ -74,13 +97,10 @@ class CommentFormBuilder extends FormBuilder
      */
     public function onSaving()
     {
-        if (!$subject = $this->getSubject()) {
-            throw new \Exception('$subject is required.');
-        }
+        $entry = $this->getFormEntry();
 
-        $comment = $this->getFormEntry();
-
-        $comment->setAttribute('subject', $subject);
+        $entry->setAttribute('subject_id', $this->getSubjectId());
+        $entry->setAttribute('subject_type', $this->getSubjectType());
     }
 
     /**
@@ -102,6 +122,52 @@ class CommentFormBuilder extends FormBuilder
     public function setSubject($subject)
     {
         $this->subject = $subject;
+
+        return $this;
+    }
+
+    /**
+     * Get the subject ID.
+     *
+     * @return int|null
+     */
+    public function getSubjectId()
+    {
+        return $this->subjectId ?: $this->subject->getId();
+    }
+
+    /**
+     * Set the subject ID.
+     *
+     * @param $id
+     * @return $this
+     */
+    public function setSubjectId($id)
+    {
+        $this->subjectId = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the subject type.
+     *
+     * @return null|string
+     */
+    public function getSubjectType()
+    {
+        return $this->subjectType ?: get_class($this->subject);
+    }
+
+    /**
+     * Set the subject type.
+     *
+     * @param $type
+     * @return $this
+     */
+    public function setSubjectType($type)
+    {
+        $this->subjectType = $type;
 
         return $this;
     }

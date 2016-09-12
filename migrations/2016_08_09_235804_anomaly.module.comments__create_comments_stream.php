@@ -31,7 +31,6 @@ class AnomalyModuleCommentsCreateCommentsStream extends Migration
             'required' => true,
         ],
         'approved',
-        'flagged',
         'user',
         'name',
         'email',

@@ -1,5 +1,6 @@
 <?php namespace Anomaly\CommentsModule\Comment\Form;
 
+use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Model\EloquentModel;
 use Anomaly\Streams\Platform\Support\Presenter;
 use Anomaly\Streams\Platform\Ui\Form\FormCriteria;
@@ -23,43 +24,14 @@ class CommentFormCriteria extends FormCriteria
     protected $builder;
 
     /**
-     * Build the builder.
+     * Set the subject.
      *
-     * @return CommentFormBuilder
+     * @param EntryInterface $entry
      */
-    public function build()
+    public function setSubject(EntryInterface $entry)
     {
-        parent::build();
-
-        /* @var EloquentModel $model */
-        $model = $this->container->make($this->parameters['subject']['type']);
-
-        $this->builder->setSubject($model->find($this->parameters['subject']['id']));
-
-        return $this->builder;
-    }
-
-    /**
-     * Set the entry.
-     *
-     * @param $entry
-     * @return $this
-     * @throws \Exception
-     */
-    public function setSubject($entry)
-    {
-        if ($entry instanceof Presenter) {
-            $entry = $entry->getObject();
-        }
-
-        if (!$entry instanceof EloquentModel) {
-            throw new \Exception('$entry must be instance of ' . EloquentModel::class);
-        }
-
-        $this->parameters['subject'] = [
-            'id'   => $entry->getId(),
-            'type' => get_class($entry),
-        ];
+        $this->builder->setSubjectId($this->parameters['subject_id'] = $entry->getId());
+        $this->builder->setSubjectType($this->parameters['subject_type'] = get_class($entry));
 
         return $this;
     }
