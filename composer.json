@@ -1,6 +1,10 @@
 {
     "name": "anomaly/comments-module",
     "type": "streams-addon",
+    "require": {
+        "anomaly/streams-platform": "1.1.*",
+        "anomaly/users-module": "2.1.*"
+    },
     "autoload": {
         "psr-4": {
             "Anomaly\\CommentsModule\\": "src/"
