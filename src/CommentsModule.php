@@ -14,6 +14,13 @@ class CommentsModule extends Module
 {
 
     /**
+     * The addon icon.
+     *
+     * @var string
+     */
+    protected $icon = 'fa fa-comment';
+
+    /**
      * The module sections.
      *
      * @var array

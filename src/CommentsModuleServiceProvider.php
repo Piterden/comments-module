@@ -3,8 +3,8 @@
 use Anomaly\CommentsModule\Comment\CommentModel;
 use Anomaly\CommentsModule\Comment\Form\CommentFormBuilder;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
+use Anomaly\Streams\Platform\Model\Comments\CommentsCommentsEntryModel;
 use Anomaly\Streams\Platform\Model\EloquentModel;
-use Illuminate\Contracts\Container\Container;
 
 /**
  * Class CommentsModuleServiceProvider
@@ -18,13 +18,22 @@ class CommentsModuleServiceProvider extends AddonServiceProvider
 {
 
     /**
+     * The addon plugins.
+     *
+     * @var array
+     */
+    protected $plugins = [
+        CommentsModulePlugin::class,
+    ];
+
+    /**
      * The addon bindings.
      *
      * @var array
      */
     protected $bindings = [
-        'comment'                                                            => CommentFormBuilder::class,
-        'Anomaly\Streams\Platform\Model\Comments\CommentsCommentsEntryModel' => 'Anomaly\CommentsModule\Comment\CommentModel',
+        'comment'                         => CommentFormBuilder::class,
+        CommentsCommentsEntryModel::class => CommentModel::class,
     ];
 
     /**

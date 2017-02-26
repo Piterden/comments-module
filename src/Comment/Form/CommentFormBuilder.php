@@ -46,12 +46,42 @@ class CommentFormBuilder extends FormBuilder
     ];
 
     /**
+     * The form fields.
+     *
+     * @var array
+     */
+    protected $fields = [
+        'body' => [
+            'label'       => false,
+            'placeholder' => 'anomaly.module.comments::field.comment.placeholder',
+        ],
+    ];
+
+    /**
      * The form actions.
      *
      * @var array|string
      */
     protected $actions = [
-        'submit',
+        'submit' => [
+            'text' => 'anomaly.module.comments::message.post_comment',
+        ],
+    ];
+
+    /**
+     * The form assets.
+     *
+     * @var array
+     */
+    protected $assets = [
+        'styles.css'     => [
+            'anomaly.module.comments::css/jquery.atwho.min.css',
+        ],
+        'scripts.js' => [
+            'anomaly.module.comments::js/jquery.caret.min.js',
+            'anomaly.module.comments::js/jquery.atwho.min.js',
+            'anomaly.module.comments::js/mention.js',
+        ],
     ];
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'approved' => 'Approved',
-    'pending'  => 'Pending',
+    'pending'           => 'Pending',
+    'approved'          => 'Approved',
+    'post_comment' => 'Post Comment',
 ];
