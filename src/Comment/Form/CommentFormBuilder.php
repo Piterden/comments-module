@@ -95,7 +95,7 @@ class CommentFormBuilder extends FormBuilder
                 ->skipField('name')
                 ->setFields(
                     [
-                        'comment' => [
+                        'body' => [
                             'label' => false,
                         ],
                     ]
