@@ -16,7 +16,7 @@
                     {% endif %}
                 </div>
                 <div class="media-body">
-                    <div class="h4 media-heading text-muted">
+                    <div class="h5 media-heading text-muted">
                         {{ comment.created_by.username ?: comment.name }} - {{ comment.created_at.diffForHumans() }}
                     </div>
                     {{ comment.body|markdown|mentions_linkify|str_linkify|raw }}
