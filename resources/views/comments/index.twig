@@ -1,22 +1,32 @@
 <div id="comments">
     {% if not subject.comments.isEmpty() %}
-        {% for comment in subject.comments %}
+
+        {% set comments = subject.comments().paginate(100) %}
+
+        {% for comment in comments.decorated() %}
 
             <div class="media">
                 <div class="media-left">
-                    <a href="{{ comment.created_by.route('view') }}">
-                        {{ img(comment.created_by.gravatar({'d': 'identicon'})).class('media-object img-circle').width(64)|raw }}
-                    </a>
+                    {% if comment.created_by_id %}
+                        <a href="{{ comment.created_by.route('view') }}">
+                            {{ comment.created_by.gravatar({'d': 'mm'}).class('media-object img-circle').width(64)|raw }}
+                        </a>
+                    {% else %}
+                        {{ gravatar(comment.created_by.email.value, {'d': 'mm'}).class('media-object img-circle').width(64)|raw }}
+                    {% endif %}
                 </div>
                 <div class="media-body">
                     <div class="h4 media-heading text-muted">
-                        {{ comment.created_by.username }} - {{ comment.created_at.diffForHumans() }}
+                        {{ comment.created_by.username ?: comment.name }} - {{ comment.created_at.diffForHumans() }}
                     </div>
                     {{ comment.body|markdown|mentions_linkify|str_linkify|raw }}
                 </div>
             </div>
 
         {% endfor %}
+
+        {{ comments.render|raw }}
+
     {% else %}
         <p>No comments just yet!</p>
     {% endif %}

@@ -1,10 +1,14 @@
 <?php
 
 return [
-    'body'    => [
-        'name' => 'Comment',
+    'name'  => [
+        'name' => 'Name',
     ],
-    'comment' => [
+    'email' => [
+        'name' => 'Email',
+    ],
+    'body'  => [
+        'name'        => 'Comment',
         'placeholder' => 'Leave your comment here...',
     ],
 ];
