@@ -5,7 +5,7 @@
 
         {% for comment in comments.decorated() %}
 
-            <div class="media">
+            <div class="media" id="comment-{{ comment.id }}">
                 <div class="media-left">
                     {% if comment.created_by_id %}
                         <a href="{{ comment.created_by.route('view') }}">
@@ -30,9 +30,5 @@
     {% else %}
         <p>No comments just yet!</p>
     {% endif %}
-
-    <hr>
-
-    {{ form('comment').subject(subject)|raw }}
 
 </div>

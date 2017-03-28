@@ -1,13 +1,16 @@
 <?php
 
 return [
-    'name'  => [
+    'name'     => [
         'name' => 'Name',
     ],
-    'email' => [
+    'email'    => [
         'name' => 'Email',
     ],
-    'body'  => [
+    'approved' => [
+        'name' => 'Approved',
+    ],
+    'body'     => [
         'name'        => 'Comment',
         'placeholder' => 'Leave your comment here...',
     ],

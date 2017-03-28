@@ -13,6 +13,11 @@ use Anomaly\Streams\Platform\Support\Decorator;
 class CommentsModulePlugin extends Plugin
 {
 
+    /**
+     * Get the plugin functions.
+     *
+     * @return array
+     */
     public function getFunctions()
     {
         return [
