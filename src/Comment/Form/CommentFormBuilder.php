@@ -51,7 +51,25 @@ class CommentFormBuilder extends FormBuilder
      * @var array|string
      */
     protected $actions = [
-        'submit',
+        'submit' => [
+            'text' => 'anomaly.module.comments::message.post_comment',
+        ],
+    ];
+
+    /**
+     * The form assets.
+     *
+     * @var array
+     */
+    protected $assets = [
+        'styles.css' => [
+            'anomaly.module.comments::css/jquery.atwho.min.css',
+        ],
+        'scripts.js' => [
+            'anomaly.module.comments::js/jquery.caret.min.js',
+            'anomaly.module.comments::js/jquery.atwho.min.js',
+            'anomaly.module.comments::js/mention.js',
+        ],
     ];
 
     /**
@@ -74,7 +92,14 @@ class CommentFormBuilder extends FormBuilder
         if ($auth->check()) {
             $this
                 ->skipField('email')
-                ->skipField('name');
+                ->skipField('name')
+                ->setFields(
+                    [
+                        'body' => [
+                            'label' => false,
+                        ],
+                    ]
+                );
         }
 
         if ($auth->guest()) {

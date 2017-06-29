@@ -1,6 +1,25 @@
 {
     "name": "anomaly/comments-module",
     "type": "streams-addon",
+    "description": "Global commenting system for the Streams Platform.",
+    "keywords": [
+        "streams module",
+        "streams addon",
+        "comments"
+    ],
+    "homepage": "http://pyrocms.com/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PyroCMS, Inc.",
+            "email": "ryan@pyrocms.com",
+            "homepage": "http://pyrocms.com/",
+            "role": "Owner"
+        }
+    ],
+    "support": {
+        "email": "support@pyrocms.com"
+    },
     "autoload": {
         "psr-4": {
             "Anomaly\\CommentsModule\\": "src/"

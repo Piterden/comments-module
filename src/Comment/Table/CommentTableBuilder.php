@@ -14,13 +14,6 @@ class CommentTableBuilder extends TableBuilder
 {
 
     /**
-     * The table views.
-     *
-     * @var array|string
-     */
-    protected $views = [];
-
-    /**
      * The table filters.
      *
      * @var array|string
@@ -32,8 +25,9 @@ class CommentTableBuilder extends TableBuilder
                 'name',
                 'email',
                 'ip_address',
-            ]
-        ]
+            ],
+        ],
+        'approved',
     ];
 
     /**
@@ -42,7 +36,7 @@ class CommentTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $columns = [
-        'entry.label',
+        'entry.approved.toggle',
         'email',
         'entry.body|str_limit(50)',
     ];
@@ -53,7 +47,7 @@ class CommentTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $buttons = [
-        'edit'
+        'edit',
     ];
 
     /**
@@ -62,7 +56,7 @@ class CommentTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $actions = [
-        'delete'
+        'delete',
     ];
 
     /**
@@ -73,7 +67,7 @@ class CommentTableBuilder extends TableBuilder
     protected $options = [
         'order_by' => [
             'id' => 'DESC',
-        ]
+        ],
     ];
 
     /**
